@@ -1,0 +1,137 @@
+body{
+    background-color: rgb(23, 22, 22);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.reg{
+    
+    text-align: center;
+    height: fit-content;
+    position: center;
+    border-radius: 25px;
+    width: fit-content;
+    margin-left :41.5%;
+    background-color: rgb(53, 51, 51);
+    padding: 20px;
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+  margin-right: 10px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(90, 158, 203);
+  transition: background-color 0.3s ease;
+  font-size: large;
+  border: none;
+  cursor: pointer;
+  font-family: fantasy;
+}
+
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  background-color: rgb(51, 111, 152);
+}
+
+.reg a {
+  margin-right: 10px;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(90, 158, 203);
+  transition: background-color 0.3s ease;
+  font-size: large;
+  font-family: fantasy;
+}
+
+.reg a:hover {
+  background-color: rgb(51, 111, 152);
+}
+
+header{
+    position:sticky;
+    top : 0;   
+}
+.meni p{
+    color: rgb(231, 224, 224);
+    font-family: fantasy;
+    font-size: xx-large;
+}
+
+.meni{
+    background-color: rgb(53, 51, 51);
+    display: flex;
+    border-radius: 5px;
+    height: fit-content;
+}
+.meni img{
+    height: 6.4em;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+
+
+
+.inputi {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.inputi_field {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid rgb(231, 224, 224);
+  outline: 0;
+  font-size: 1.3rem;
+  color: rgb(231, 224, 224);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .inputi_label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.inputi_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: rgb(231, 224, 224);
+}
+
+.inputi_field:focus {
+  padding-bottom: 6px;  
+  border-width: 3px;
+  border-color: rgb(90, 158, 203);
+  border-image-slice: 1;
+}
+.inputi_field:focus .inputi_label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    font-weight:700;    
+  }
+.inputi_field{
+  &:required,&:invalid { box-shadow:none; }
+}
+
+h1{
+    color : rgb(231, 224, 224);
+}

@@ -30,35 +30,37 @@ if (isset($_SESSION['email'])) {
         <div class="profil">
             <span>Prijavljeni kot: <?php echo $username; ?></span>
             <?php if ($showLogoutButton) { ?>
-                    <button onclick="location.href='logout.php'">Logout</button>
+                <a href="logout.php">
+                    <button>Logout</button>
+                </a>
             <?php } ?>
             <?php if ($showCreateSubredditButton) { ?>
-                    <button onclick="location.href='subreddit_create.php'">Create Subreddit</button>
+                <a href="subreddit_create.php">
+                    <button>Create Subreddit</button>
+                </a>
             <?php } ?>
         </div>
     </div>
 </header>
-<div class="welcome">
-    <h1>Welcome to Postme.</h1>
-    <p>Totally not a school project website</p>
-    <a href="register.php">
-        <button>Postani del Postme!</button>
-    </a>
-    <br>
-    <br>
-    </div>
-    <div class="welcome">
-    <p>Boardi : </p>
-    <?php
-    $sql = "SELECT * FROM subreddits;";
+<?php
+    $subreddit_id = $_GET['id'];
+    $sql = "SELECT * FROM posts WHERE subreddit_id = :id ORDER BY datum DESC;";
     $checkStatement = $pdo->prepare($sql);
+    $checkStatement->bindParam(':id', $subreddit_id);
     $checkStatement->execute();
     while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
-        echo "<br><p><button onclick=\"location.href='subreddit.php?id=".$row['id']."'\"'>
-            ".$row['ime']."</button>
-             - ".$row['opis']."</p> <br>";
+        echo "<div class='welcome'>";
+        echo "<h1>";
+        echo $row['naslov'];
+        echo "</h1>";
+        echo "<br>";
+        echo "<p>";
+        echo $row['content'];
+        echo "</p>";
+        echo "</div>";
     }
 ?>
+<div class="welcome">
 </div>
 </body>
 </html>

@@ -20,7 +20,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
             if ($stmt->rowCount() == 1) {
                 session_start();
-                $_SESSION['email'] = $Email;
+                $_SESSION['email'] = $row['ime'];
                 $_SESSION['id'] = $row['id'];
                 header("Location: index.php");
                 exit();

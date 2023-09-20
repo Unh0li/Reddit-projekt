@@ -1,5 +1,11 @@
 <?php
+require_once "cookie.php";
 include_once 'baza.php';
+if (isset($_SESSION['email'])) {
+    $username = $_SESSION['email'];
+} else {
+    $username = "Gost";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +28,8 @@ include_once 'baza.php';
         <a href="register.php">
         <button>Postani del Postme!</button>
         </a>
-
+        <br>
+        <span>Prijavljeni kot: <?php echo $username; ?></span>
     </div>
     <br>
 </body>

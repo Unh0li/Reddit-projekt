@@ -14,16 +14,16 @@ require_once "baza.php";
         <div class ="pri">
             <br>
         <h1 align ="center">Prijavi se!</h1>
-        <form action = "priv.php" method="post" align="center">
+        <form action = "login_check.php" method="post" align="center">
             <table align ="center">
                 <td><div class="inputi">
-                            <input type="email" class="inputi_field" placeholder="Email" name = "Email" id='name' required />
+                            <input type="email" class="inputi_field" placeholder="email" name = "email" id='name' required />
                      <label for="name" class="inputi_label">Email</label>
                     </div></td>
             </tr>
             <tr>
                 <td><div class="inputi">
-                        <input type="password" class="inputi_field" placeholder="Password" name="Geslo" id='name' required />
+                        <input type="password" class="inputi_field" placeholder="password" name="password" id='name' required />
                      <label for="name" class="inputi_label">Geslo</label>
                     </div></td>
             </tr>

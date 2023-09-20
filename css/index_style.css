@@ -56,3 +56,5 @@ header{
     position:sticky;
     top : 0;   
 }
+
+.profil{     flex: 1;     text-align: right; /* Align content to the right */ }

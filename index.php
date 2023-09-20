@@ -20,6 +20,13 @@ if (isset($_SESSION['email'])) {
     <div class="meni">
         <img src="./slike/ers.png">
         <p>Postme</p>
+            <div class="profil">
+                <span>Prijavljeni kot: <?php echo $username; ?></span>
+                <a href="logout.php">
+                    <button>Logout</button>
+
+                </a>
+            </div>
     </div>
     </header>
     <div class="welcome">
@@ -28,8 +35,6 @@ if (isset($_SESSION['email'])) {
         <a href="register.php">
         <button>Postani del Postme!</button>
         </a>
-        <br>
-        <span>Prijavljeni kot: <?php echo $username; ?></span>
     </div>
     <br>
 </body>

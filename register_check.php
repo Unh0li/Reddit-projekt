@@ -15,20 +15,29 @@ if (isset($_POST['Ime'], $_POST['Email'], $_POST['Password'])) {
         if (preg_match($pattern, $Pass)) {
             $kp = sha1($Pass);
 
-            $checkQuery = "SELECT * FROM users WHERE email = '$Email'";
-            $checkResult = mysqli_query($link, $checkQuery);
+            try {
+                // Check if the email is already registered
+                $checkQuery = "SELECT * FROM users WHERE email = :email";
+                $checkStmt = $pdo->prepare($checkQuery);
+                $checkStmt->bindParam(':email', $Email);
+                $checkStmt->execute();
 
-            if (mysqli_num_rows($checkResult) > 0) {
-                echo "<script>alert('Uporabnik je že registriran');</script>";
-                header("refresh:0;url=register.php");
-            } else {
-                $insertQuery = "INSERT INTO users (ime, email, password) VALUES ('$Ime', '$Email', '$kp')";
-
-                if (mysqli_query($link, $insertQuery)) {
-                    header("refresh:0;url=login.php");
+                if ($checkStmt->rowCount() > 0) {
+                    echo "<script>alert('Uporabnik je že registriran');</script>";
+                    header("refresh:0;url=register.php");
                 } else {
-                    echo "<script>alert('Registracija neuspešna!');</script>";
+                    // Insert new user into the database
+                    $insertQuery = "INSERT INTO users (ime, email, password) VALUES (:ime, :email, :password)";
+                    $insertStmt = $pdo->prepare($insertQuery);
+                    $insertStmt->bindParam(':ime', $Ime);
+                    $insertStmt->bindParam(':email', $Email);
+                    $insertStmt->bindParam(':password', $kp);
+                    $insertStmt->execute();
+
+                    header("refresh:0;url=login.php");
                 }
+            } catch (PDOException $e) {
+                echo "<script>alert('Registracija neuspešna!');</script>";
             }
         } else {
             echo "<script>alert('Geslo mora vsebovati vsaj eno veliko črko.');</script>";
@@ -43,4 +52,3 @@ if (isset($_POST['Ime'], $_POST['Email'], $_POST['Password'])) {
     header("refresh:0;url=register.php");
 }
 ?>
-

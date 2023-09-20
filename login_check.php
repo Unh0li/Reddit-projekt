@@ -9,19 +9,27 @@ if (isset($_POST['email'], $_POST['password'])) {
     if (!empty($Email) && !empty($Pass)) {
         $kp = sha1($Pass);
 
-        $query = "SELECT * FROM users WHERE email = '$Email' AND password = '$kp'";
-        $result = mysqli_query($link, $query);
-        $row = mysqli_fetch_assoc($result);
+        try {
+            $query = "SELECT * FROM users WHERE email = :email AND password = :password";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':email', $Email);
+            $stmt->bindParam(':password', $kp);
+            $stmt->execute();
 
-        if (mysqli_num_rows($result) == 1) {
-            session_start();
-            $_SESSION['email'] = $Email;
-            $_SESSION['id'] = $row['id'];
-            header("Location: index.php");
-            exit();
-        } else {
-            echo "<script>alert('Napačni podatki!');</script>";
-            header("refresh:0;url=index.php");
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($stmt->rowCount() == 1) {
+                session_start();
+                $_SESSION['email'] = $Email;
+                $_SESSION['id'] = $row['id'];
+                header("Location: index.php");
+                exit();
+            } else {
+                echo "<script>alert('Napačni podatki!');</script>";
+                header("refresh:0;url=index.php");
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     } else {
         echo "<script>alert('Niste vpisali vseh podatkov!');</script>";

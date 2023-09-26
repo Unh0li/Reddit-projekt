@@ -2,15 +2,14 @@
 require_once "cookie.php";
 include_once 'baza.php';
 
-// Check if username is set in session
 if (isset($_SESSION['email'])) {
     $username = $_SESSION['email'];
-    $showLogoutButton = true; // Set a flag to show the logout button
-    $showCreateSubredditButton = true; // Set a flag to show the Create Subreddit button
+    $showLogoutButton = true;
+    $showCreateSubredditButton = true; 
 } else {
     $username = "Gost";
-    $showLogoutButton = false; // Set a flag to hide the logout button
-    $showCreateSubredditButton = false; // Set a flag to hide the Create Subreddit button
+    $showLogoutButton = false; 
+    $showCreateSubredditButton = false;
 }
 ?>
 
@@ -48,7 +47,7 @@ if (isset($_SESSION['email'])) {
     <br>
     </div>
     <div class="welcome">
-    <p>Boardi : </p>
+    <h1>Boardi : </h1>
     <?php
     $sql = "SELECT * FROM subreddits;";
     $checkStatement = $pdo->prepare($sql);

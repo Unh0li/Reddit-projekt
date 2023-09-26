@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset = "utf-8">
-    <title>Registracija</title>
+    <title>Ustvari board</title>
     <link rel="stylesheet" type="text/css" href = "./css/register_style.css">
 </head>
 <body>
@@ -36,7 +36,7 @@
             <tr>
                
                 <td>
-                <br><input type = "submit" value = "Pošlji!">
+                <br><input type = "submit" value = "Ustvari!">
                 </td>
             <tr>
             </table>

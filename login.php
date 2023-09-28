@@ -19,7 +19,7 @@ require_once "baza.php";
     </header>
         <div class ="reg">
             <br>
-        <h1 align ="center">Prijavi se!</h1>
+        <h1 align ="center">Login</h1>
         <form action = "login_check.php" method="post" align="center">
             <table align ="center">
                 <td><div class="inputi">

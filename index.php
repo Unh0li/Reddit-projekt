@@ -24,15 +24,23 @@ if (isset($_SESSION['email'])) {
 <body>
 <header>
     <div class="meni">
-        <img src="./slike/ers.png">
-        <p>Postme</p>
+        <div>
+            <img src="./slike/ers.png">
+            <p>Postme</p>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button onclick="searchFunction()">Search</button>
+        </div>
         <div class="profil">
             <span>Prijavljeni kot: <?php echo $username; ?></span>
+            <!-- "Home" button on the right side next to the logout button -->
+            <button onclick="location.href='index.php'">Home</button>
             <?php if ($showLogoutButton) { ?>
-                    <button onclick="location.href='logout.php'">Logout</button>
+                <button onclick="location.href='logout.php'">Logout</button>
             <?php } ?>
             <?php if ($showCreateSubredditButton) { ?>
-                    <button onclick="location.href='subreddit_create.php'">Create Subreddit</button>
+                <button onclick="location.href='subreddit_create.php'">Create board</button>
             <?php } ?>
         </div>
     </div>
@@ -42,6 +50,11 @@ if (isset($_SESSION['email'])) {
     <p>Totally not a school project website</p>
     <a href="register.php">
         <button>Postani del Postme!</button>
+    </a>
+    <br>
+    <br>
+    <a href="login.php">
+        <button>Login</button>
     </a>
     <br>
     <br>

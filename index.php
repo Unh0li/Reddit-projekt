@@ -33,7 +33,7 @@ if (isset($_SESSION['email'])) {
             <button onclick="searchFunction()">Search</button>
         </div>
         <div class="profil">
-            <span>Prijavljeni kot: <?php echo $username; ?></span>
+            <span class="ime">Prijavljeni ste kot: <?php echo $username; ?></span>
             <!-- "Home" button on the right side next to the logout button -->
             <button onclick="location.href='index.php'">Home</button>
             <?php if ($showLogoutButton) { ?>

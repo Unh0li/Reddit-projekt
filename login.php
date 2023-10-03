@@ -41,7 +41,6 @@ require_once "baza.php";
             <tr>
             </table>
         </form>
-        <p></p>
         <br>
         <a  href = "register.php" >Še niste registrirani ? Kliknite tukaj </a >
         <br>

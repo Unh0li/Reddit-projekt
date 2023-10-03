@@ -72,3 +72,27 @@ span{
     color: rgb(231, 224, 224);
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.like, .dislike {
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed for spacing */
+}
+
+.like button {
+    background-color: orange;
+    color: white; /* Change text color to make it readable on the orange background */
+}
+
+/* Style the dislike button */
+.dislike button {
+    background-color: #3f51b5; /* Adjust the color code for the desired shade of blue */
+    color: white; /* Change text color to make it readable on the blue background */
+}   
+
+.like button:hover{
+    background-color: rgb(172, 116, 13);
+}
+
+.dislike button:hover{
+    background-color: #28336e;
+}

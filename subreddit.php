@@ -13,10 +13,45 @@ if (isset($_SESSION['email'])) {
     $showCreateSubredditButton = false; // Set a flag to hide the Create Subreddit button
 }
 
-// Handle likes and dislikes here (to be implemented)
+// Handle likes and dislikes here
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process likes and dislikes here based on post data
-    // You will need to implement the logic for handling likes and dislikes
+    if (isset($_POST['like'])) {
+        $postId = $_POST['post_id'];
+        $userId = $_SESSION['user_id']; // Assuming you have user_id in your session
+        incrementVote($postId, 'upvote', $userId);
+    } elseif (isset($_POST['dislike'])) {
+        $postId = $_POST['post_id'];
+        $userId = $_SESSION['user_id']; // Assuming you have user_id in your session
+        incrementVote($postId, 'downvote', $userId);
+    }
+}
+
+// Function to increment votes in the database
+function incrementVote($postId, $voteType, $userId) {
+    global $pdo;
+    
+    // Check if the user has already voted on this post
+    $checkVoteSql = "SELECT * FROM votes WHERE post_id = :post_id AND user_id = :user_id";
+    $checkVoteStmt = $pdo->prepare($checkVoteSql);
+    $checkVoteStmt->bindParam(':post_id', $postId);
+    $checkVoteStmt->bindParam(':user_id', $userId);
+    $checkVoteStmt->execute();
+    
+    if ($checkVoteStmt->rowCount() == 0) {
+        // User hasn't voted on this post yet, insert a new vote
+        $insertVoteSql = "INSERT INTO votes (post_id, user_id, $voteType) VALUES (:post_id, :user_id, 1)";
+        $insertVoteStmt = $pdo->prepare($insertVoteSql);
+        $insertVoteStmt->bindParam(':post_id', $postId);
+        $insertVoteStmt->bindParam(':user_id', $userId);
+        $insertVoteStmt->execute();
+    } else {
+        // User has already voted, update the existing vote
+        $updateVoteSql = "UPDATE votes SET $voteType = $voteType + 1 WHERE post_id = :post_id AND user_id = :user_id";
+        $updateVoteStmt = $pdo->prepare($updateVoteSql);
+        $updateVoteStmt->bindParam(':post_id', $postId);
+        $updateVoteStmt->bindParam(':user_id', $userId);
+        $updateVoteStmt->execute();
+    }
 }
 
 // Retrieve the board's name based on subreddit_id
@@ -40,13 +75,6 @@ $boardName = $boardStatement->fetchColumn();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subreddit</title>
     <link rel="stylesheet" type="text/css" href="css/index_style.css">
-    <style>
-        /* Add CSS for positioning the "Home" button */
-        .meni {
-            display: flex;
-            justify-content: space-between; /* Place items at each end of the container */
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -68,6 +96,7 @@ $boardName = $boardStatement->fetchColumn();
             <?php } ?>
             <?php if ($showCreateSubredditButton) { ?>
                 <button onclick="location.href='subreddit_create.php'">Create board</button>
+                <button onclick="location.href='create_post.php?id=<?php echo $subreddit_id; ?>'">Create Post</button>
             <?php } ?>
         </div>
     </div>
@@ -90,9 +119,20 @@ while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
     echo $row['content'];
     echo "</p>";
     echo "<form method='POST' action='votes.php'>";
+    
+    // Hidden input to store the post_id
+    echo "<input type='hidden' name='post_id' value='" . $row['id'] . "'>";
+    
+    // Like button div
+    echo "<div class='like'>";
     echo "<button type='submit' name='like'>Like</button>";
-    echo "  ";
+    echo "</div>";
+    
+    // Dislike button div
+    echo "<div class='dislike'>";
     echo "<button type='submit' name='dislike'>Dislike</button>";
+    echo "</div>";
+    
     echo "</form>";
     echo "</div>";
 }

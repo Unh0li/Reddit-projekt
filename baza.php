@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$user = "root";
+$user = "unholi_root";
 $password = "i;4JEctQmljh";
 $dbname = "unholi_reddit";
 

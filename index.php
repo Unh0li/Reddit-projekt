@@ -48,16 +48,22 @@ if (isset($_SESSION['email'])) {
 <div class="welcome">
     <h1>Welcome to Postme.</h1>
     <p>Totally not a school project website</p>
-    <a href="register.php">
+    <?php
+    if(!isset($_SESSION['email'])){
+        echo"
+        <a href='register.php'>
         <button>Postani del Postme!</button>
-    </a>
+        </a>
     <br>
     <br>
-    <a href="login.php">
+    <a href='login.php'>
         <button>Login</button>
     </a>
     <br>
     <br>
+    ";
+    }
+    ?>
     </div>
     <div class="welcome">
     <h1>Boardi : </h1>

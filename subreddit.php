@@ -13,47 +13,7 @@ if (isset($_SESSION['email'])) {
     $showCreateSubredditButton = false; // Set a flag to hide the Create Subreddit button
 }
 
-// Handle likes and dislikes here
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['like'])) {
-        $postId = $_POST['post_id'];
-        $userId = $_SESSION['user_id']; // Assuming you have user_id in your session
-        incrementVote($postId, 'upvote', $userId);
-    } elseif (isset($_POST['dislike'])) {
-        $postId = $_POST['post_id'];
-        $userId = $_SESSION['user_id']; // Assuming you have user_id in your session
-        incrementVote($postId, 'downvote', $userId);
-    }
-}
-
 // Function to increment votes in the database
-function incrementVote($postId, $voteType, $userId) {
-    global $pdo;
-    
-    // Check if the user has already voted on this post
-    $checkVoteSql = "SELECT * FROM votes WHERE post_id = :post_id AND user_id = :user_id";
-    $checkVoteStmt = $pdo->prepare($checkVoteSql);
-    $checkVoteStmt->bindParam(':post_id', $postId);
-    $checkVoteStmt->bindParam(':user_id', $userId);
-    $checkVoteStmt->execute();
-    
-    if ($checkVoteStmt->rowCount() == 0) {
-        // User hasn't voted on this post yet, insert a new vote
-        $insertVoteSql = "INSERT INTO votes (post_id, user_id, $voteType) VALUES (:post_id, :user_id, 1)";
-        $insertVoteStmt = $pdo->prepare($insertVoteSql);
-        $insertVoteStmt->bindParam(':post_id', $postId);
-        $insertVoteStmt->bindParam(':user_id', $userId);
-        $insertVoteStmt->execute();
-    } else {
-        // User has already voted, update the existing vote
-        $updateVoteSql = "UPDATE votes SET $voteType = $voteType + 1 WHERE post_id = :post_id AND user_id = :user_id";
-        $updateVoteStmt = $pdo->prepare($updateVoteSql);
-        $updateVoteStmt->bindParam(':post_id', $postId);
-        $updateVoteStmt->bindParam(':user_id', $userId);
-        $updateVoteStmt->execute();
-    }
-}
-
 // Retrieve the board's name based on subreddit_id
 $subreddit_id = $_GET['id'];
 $sql_board = "SELECT ime FROM subreddits WHERE id = :id";
@@ -105,6 +65,7 @@ $boardName = $boardStatement->fetchColumn();
     <h1><?php echo $boardName; ?></h1>
 </div>
 <?php
+$_SESSION['subreddit'] = $subreddit_id;
 $sql = "SELECT * FROM posts WHERE subreddit_id = :id ORDER BY datum DESC;";
 $checkStatement = $pdo->prepare($sql);
 $checkStatement->bindParam(':id', $subreddit_id);
@@ -118,22 +79,40 @@ while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
     echo "<p>";
     echo $row['content'];
     echo "</p>";
-    echo "<form method='POST' action='votes.php'>";
-    
-    // Hidden input to store the post_id
-    echo "<input type='hidden' name='post_id' value='" . $row['id'] . "'>";
+    echo "<br>";
+
+    $sql2 = "SELECT COUNT(*) FROM post_votes WHERE post_id = :id AND vote = 1";
+    $checkStatement2 = $pdo->prepare($sql2);
+    $checkStatement2->bindParam(':id', $row['id']);
+    $checkStatement2->execute();
+
+    // Fetch the count and save it in a variable
+    $likeCount = $checkStatement2->fetchColumn();
+
+    $sql3 = "SELECT COUNT(*) FROM post_votes WHERE post_id = :id AND vote = 0";
+    $checkStatement3 = $pdo->prepare($sql3);
+    $checkStatement3->bindParam(':id', $row['id']);
+    $checkStatement3->execute();
+
+    // Fetch the count and save it in a variable
+    $dislikeCount = $checkStatement3->fetchColumn();
+
+    $karma = $likeCount - $dislikeCount;
+
+
+    echo "<p>Karma: ".$karma." </p>";
     
     // Like button div
-    echo "<div class='like'>";
-    echo "<button type='submit' name='like'>Like</button>";
-    echo "</div>";
+echo "<div class='like'>";
+echo "<button type='submit' onclick=\"location.href='vote.php?vote=1&id=".$row['id']."'\" name='like'>Like</button>";
+echo "</div>";
+
+// Dislike button div
+echo "<div class='dislike'>";
+echo "<button type='submit' onclick=\"location.href='vote.php?vote=0&id=".$row['id']."'\" name='dislike'>Dislike</button>";
+echo "</div>";
+
     
-    // Dislike button div
-    echo "<div class='dislike'>";
-    echo "<button type='submit' name='dislike'>Dislike</button>";
-    echo "</div>";
-    
-    echo "</form>";
     echo "</div>";
 }
 ?>

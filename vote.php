@@ -28,7 +28,6 @@ if (isset($_GET['vote'], $_GET['id'])) {
                     $deleteStatement->bindParam(':user', $user_id, PDO::PARAM_INT);
                     $deleteStatement->bindParam(':post', $post_id, PDO::PARAM_INT);
                     $deleteStatement->execute();
-                    echo "<script>alert('Vote deleted successfully');</script>";
                 } else {
                     // If the user is trying to change their vote, update its value
                     $updateQuery = "UPDATE post_votes SET vote = :vote WHERE user_id = :user AND post_id = :post";

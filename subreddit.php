@@ -43,10 +43,7 @@ $boardName = $boardStatement->fetchColumn();
             <img src="./slike/ers.png">
             <p>Postme</p>
         </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button onclick="searchFunction()">Search</button>
-        </div>
+        
         <div class="profil">
             <span>Prijavljeni kot: <?php echo $username; ?></span>
             <!-- "Home" button on the right side next to the logout button -->

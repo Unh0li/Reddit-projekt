@@ -2,8 +2,8 @@
 require_once "cookie.php";
 include_once 'baza.php';
 
-if (isset($_SESSION['email'])) {
-    $username = $_SESSION['email'];
+if (isset($_SESSION['ime'])) {
+    $username = $_SESSION['ime'];
     $showLogoutButton = true;
     $showCreateSubredditButton = true; 
 } else {

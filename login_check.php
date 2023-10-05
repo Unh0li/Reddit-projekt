@@ -22,6 +22,7 @@ if (isset($_POST['email'], $_POST['password'])) {
             if ($stmt->rowCount() == 1) {
                 $_SESSION['email'] = $row['email']; // Assuming 'email' is the correct column name
                 $_SESSION['id'] = $row['id'];
+                $_SESSION['ime'] = $row['ime'];
 
                 // Redirect to the appropriate page after successful login
                 header("Location: index.php");

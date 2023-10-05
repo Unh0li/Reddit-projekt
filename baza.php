@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "reddit_base";
+$user = "unholi_root";
+$password = "i;4JEctQmljh";
+$dbname = "unholi_reddit";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);

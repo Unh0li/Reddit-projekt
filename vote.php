@@ -37,7 +37,6 @@ if (isset($_GET['vote'], $_GET['id'])) {
                     $updateStatement->bindParam(':post', $post_id, PDO::PARAM_INT);
                     $updateStatement->bindParam(':vote', $vote, PDO::PARAM_INT);
                     $updateStatement->execute();
-                    echo "<script>alert('Vote updated successfully');</script>";
                 }
             } else {
                 // If no vote exists, insert a new vote
@@ -47,7 +46,6 @@ if (isset($_GET['vote'], $_GET['id'])) {
                 $insertStatement->bindParam(':post', $post_id, PDO::PARAM_INT);
                 $insertStatement->bindParam(':vote', $vote, PDO::PARAM_INT);
                 $insertStatement->execute();
-                echo "<script>alert('Vote inserted successfully');</script>";
             }
             header("refresh:0;url=subreddit.php?id=".$_SESSION['subreddit']);
         } catch (PDOException $e) {

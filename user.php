@@ -59,26 +59,30 @@ $boardName = $boardStatement->fetchColumn();
     </div>
 </header>
 <div class="board-name">
-    <h1><?php echo $boardName; ?></h1>
+    <?php 
+    $user_id = $_GET['id'];
+    $sql = "SELECT * FROM users WHERE id = :id;";
+    $checkStatement = $pdo->prepare($sql);
+    $checkStatement->bindParam(':id', $user_id);
+    $checkStatement->execute();
+    $row = $checkStatement->fetch(PDO::FETCH_ASSOC);
+    $user = $row['ime'];
+
+
+?>
+    <h1><?php echo "Uporabnik: ". $user; ?></h1>
 </div>
 <?php
-$_SESSION['subreddit'] = $subreddit_id;
-$sql = "SELECT * FROM posts WHERE subreddit_id = :id ORDER BY datum DESC;";
+$sql = "SELECT * FROM posts WHERE user_id = :id ORDER BY datum DESC;";
 $checkStatement = $pdo->prepare($sql);
-$checkStatement->bindParam(':id', $subreddit_id);
+$checkStatement->bindParam(':id', $user_id);
 $checkStatement->execute();
 while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
     echo "<div class='welcome'>";
     if($row['user_id'] == $_SESSION['id']){
         echo "<button style = 'float: right;' onclick=\"location.href='delete_post.php?id=".$row['id']."'\">Delete</button><br><br>";
-        echo "<button style = 'float: right;' onclick=\"location.href='edit.php?id=".$row['id']."'\">Edit</button>";
+        echo "<button style = 'float: right;' onclick=\"location.href='edit_post.php?id=".$row['id']."'\">Edit</button>";
     }
-    $sql = "SELECT * FROM users WHERE id = :id;";
-    $checkStatement2 = $pdo->prepare($sql);
-    $checkStatement2->bindParam(':id', $row['user_id']);
-    $checkStatement2->execute();
-    $row2 = $checkStatement2->fetch(PDO::FETCH_ASSOC);
-    echo "<p>Posted by: <a href = user.php?id=".$row['user_id'].">".$row2['ime']."</a></p>";
     echo "<h2>";
     echo $row['naslov'];
     echo "</h2>";

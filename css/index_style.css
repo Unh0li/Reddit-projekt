@@ -96,3 +96,7 @@ span{
 .dislike button:hover{
     background-color: #28336e;
 }
+
+.slike{
+    max-width: 200px;
+}

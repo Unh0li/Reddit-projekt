@@ -1,5 +1,5 @@
 <?php
-$host = "localhost";
+$host = "unholi.eu";
 $user = "unholi_root";
 $password = "i;4JEctQmljh";
 $dbname = "unholi_reddit";

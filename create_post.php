@@ -24,7 +24,7 @@ $subreddits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="reg">
     <br>
     <h1 align="center">Ustvari svoj post!</h1>
-    <form action="post_check.php" method="post" align="center">
+    <form action="post_check.php" method="post" align="center" enctype="multipart/form-data">
         <table align="center">
             <tr>
                 <td><p> Board:</p>
@@ -50,6 +50,15 @@ $subreddits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="inputi">
                         <input type="textbox" class="inputi_field" placeholder="content" name="content" id='name' required />
                         <label for="name" class="inputi_label">Content</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inputi">
+                    <label for="slika">slika:</label>
+                    <br>
+                    <input type="file" id="slika" name="slika[]" required multiple><br><br>
                     </div>
                 </td>
             </tr>

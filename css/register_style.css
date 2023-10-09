@@ -1,85 +1,71 @@
-body{
-    background-color: rgb(23, 22, 22);
-    font-family: Arial, Helvetica, sans-serif;
+body {
+  background-color: rgb(23, 22, 22);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.reg{
-    
-    text-align: center;
-    height: fit-content;
-    position: center;
-    border-radius: 25px;
-    width: fit-content;
-    margin-left :41.5%;
-    background-color: rgb(53, 51, 51);
-    padding: 20px;
-    margin-top: 10px;
+.reg {
+  text-align: center;
+  border-radius: 25px;
+  width: 80%; /* Adjust width for mobile */
+  margin: 10px auto; /* Center horizontally and add spacing */
+  background-color: rgb(53, 51, 51);
+  padding: 20px;
 }
 
-input[type="submit"] {
-  margin-right: 10px;
+input[type="submit"],
+.reg a {
+  margin: 10px 5px; /* Add margin on all sides for spacing */
   padding: 12px 24px;
   border-radius: 5px;
   color: white;
   background-color: rgb(90, 158, 203);
   transition: background-color 0.3s ease;
   font-size: large;
-  border: none;
-  cursor: pointer;
   font-family: fantasy;
+  text-decoration: none; /* Remove underlines for links */
+  display: inline-block; /* Make buttons and links inline-block */
 }
-
 
 input[type="submit"]:hover,
-input[type="submit"]:focus {
-  background-color: rgb(51, 111, 152);
-}
-
-.reg a {
-  margin-right: 10px;
-  text-decoration: none;
-  padding: 12px 24px;
-  border-radius: 5px;
-  color: white;
-  background-color: rgb(90, 158, 203);
-  transition: background-color 0.3s ease;
-  font-size: large;
-  font-family: fantasy;
-}
-
+input[type="submit"]:focus,
 .reg a:hover {
   background-color: rgb(51, 111, 152);
 }
 
-header{
-    position:sticky;
-    top : 0;   
-}
-.meni p{
-    color: rgb(231, 224, 224);
-    font-family: fantasy;
-    font-size: xx-large;
+header {
+  position: sticky;
+  top: 0;
+  background-color: rgb(53, 51, 51);
+  z-index: 1; /* Ensure it's above other content */
 }
 
-.meni{
-    background-color: rgb(53, 51, 51);
-    display: flex;
-    border-radius: 5px;
-    height: fit-content;
-}
-.meni img{
-    height: 6.4em;
-    padding-right: 10px;
-    border-radius: 5px;
+.meni {
+  background-color: rgb(53, 51, 51);
+  display: flex;
+  border-radius: 5px;
+  padding: 10px 0; /* Add padding top and bottom */
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
+.meni p {
+  color: rgb(231, 224, 224);
+  font-family: fantasy;
+  font-size: 1.5rem; /* Adjust font size for mobile */
+  margin: 0; /* Remove default margin */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
 
+.meni img {
+  height: 4em; /* Adjust image size for mobile */
+  padding: 10px;
+  border-radius: 5px;
+}
 
 .inputi {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 100%;
+  margin: 10px 0; /* Add margin top and bottom */
 }
 
 .inputi_field {
@@ -95,13 +81,13 @@ header{
   transition: border-color 0.2s;
 
   &::placeholder {
-    color: transparent;
+      color: transparent;
   }
 
   &:placeholder-shown ~ .inputi_label {
-    font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
+      font-size: 1.3rem;
+      cursor: text;
+      top: 20px;
   }
 }
 
@@ -115,23 +101,19 @@ header{
 }
 
 .inputi_field:focus {
-  padding-bottom: 6px;  
+  padding-bottom: 6px;
   border-width: 3px;
   border-color: rgb(90, 158, 203);
   border-image-slice: 1;
 }
-.inputi_field:focus .inputi_label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    font-weight:700;    
-  }
-.inputi_field{
-  &:required,&:invalid { box-shadow:none; }
+
+.inputi_field:required,
+.inputi_field:invalid {
+  box-shadow: none;
 }
 
-h1{
-    color : rgb(231, 224, 224);
+h1 {
+  color: rgb(231, 224, 224);
+  text-align: center; /* Center align h1 on mobile */
+  font-size: 2rem; /* Adjust font size for mobile */
 }

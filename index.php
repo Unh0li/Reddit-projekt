@@ -16,6 +16,7 @@ if (isset($_SESSION['ime'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="js/menu.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seos</title>
@@ -24,19 +25,17 @@ if (isset($_SESSION['ime'])) {
 <body>
 <header>
     <div class="meni">
-        <div>
-            <img src="./slike/ers.png">
-            <p>Postme</p>
+        <div class="slika">
+            <div class="img-container">
+                <img src="./slike/ers.png" class="slike" alt="Image">
+                <div class="post">
+                    <p>Postme</p>
+                </div>
+            </div>
         </div>
         <div class="profil">
             <span class="ime">Prijavljeni ste kot: <?php echo $username; ?></span>
-            <!-- "Home" button on the right side next to the logout button -->
-            <?php if ($showLogoutButton) { ?>
-                <button onclick="location.href='logout.php'">Logout</button>
-            <?php } ?>
-            <?php if ($showCreateSubredditButton) { ?>
-                <button onclick="location.href='subreddit_create.php'">Create board</button>
-            <?php } ?>
+            <button id="openMenuButton">Open Menu</button>
         </div>
     </div>
 </header>

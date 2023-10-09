@@ -45,9 +45,13 @@ if ($subreddit_id > 0) {
 <body>
 <header>
     <div class="meni">
-        <div>
-            <img src="./slike/ers.png">
-            <p>Postme</p>
+    <div class="slika">
+            <div class="img-container">
+                <img src="./slike/ers.png" class="slike" alt="Image">
+                <div class="post">
+                    <p>Postme</p>
+                </div>
+            </div>
         </div>
         
         <div class="profil">

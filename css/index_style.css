@@ -29,25 +29,29 @@ h1{
     color: rgb(231, 224, 224);
     font-family: Arial, Helvetica, sans-serif;
 }
+header p{
+    color: rgb(231, 224, 224);
+    font-family: fantasy;
+}
 
 .welcome p{
     color: rgb(231, 224, 224);
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
 }
-.welcome button{
+.welcome button {
     background-color: rgb(90, 158, 203);
     color: whitesmoke;
     font-family: fantasy;
-    font-size: large;
-    padding: 5px;
+    font-size: larger; /* Adjust the font size */
+    padding: 8px 12px; /* Increase padding for a larger button */
     border-radius: 5px;
     border: rgb(90, 158, 203);
     transition: background-color 0.2s ease;
-
 }
 
-.welcome button:hover{
+/* Button hover effect */
+.welcome button:hover {
     background-color: rgb(51, 111, 152);
     cursor: pointer;
 }
@@ -99,4 +103,68 @@ span{
 
 .slike{
     max-width: 200px;
+}
+
+.img-container {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+}
+
+/* Adjust the margin and padding as needed */
+.slika img {
+    max-width: 200px;
+    margin-right: 10px; /* Add spacing between the image and "Post me" */
+}
+
+/* Position "Post me" to the right side */
+.post {
+    flex: 1; /* Expand to fill the available space */
+    text-align: right;
+}
+
+.menu {
+    position: absolute;
+    top: 6%;
+    right:22px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+/* Style for the menu buttons */
+.menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+/* Style for the menu buttons on hover */
+.menu button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the "Open Menu" button */
+#openMenuButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+
+}
+
+/* Style for the "Open Menu" button on hover */
+#openMenuButton:hover {
+    background-color: #0056b3;
 }

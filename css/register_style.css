@@ -144,6 +144,12 @@ h1 {
     padding: 20px; /* Increase padding for smaller screens */
   }
 
+  /* Adjust the buttons' position on mobile devices */
+  input[type="submit"],
+  .reg a {
+    margin-top: 10px; /* Move the buttons up by adjusting the margin */
+  }
+
   /* Adjust other styles as needed for smaller screens */
   input[type="submit"] {
     font-size: medium;

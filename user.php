@@ -79,7 +79,7 @@ $checkStatement->bindParam(':id', $user_id);
 $checkStatement->execute();
 while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
     echo "<div class='welcome'>";
-    if($row['user_id'] == $_SESSION['id']){
+    if(isset($_SESSION['id']) && $row['user_id'] == $_SESSION['id']){
         echo "<button style = 'float: right;' onclick=\"location.href='delete_post.php?id=".$row['id']."'\">Delete</button><br><br>";
         echo "<button style = 'float: right;' onclick=\"location.href='edit_post.php?id=".$row['id']."'\">Edit</button>";
     }

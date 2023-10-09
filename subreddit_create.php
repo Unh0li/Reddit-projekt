@@ -3,7 +3,7 @@
 <head>
     <meta charset = "utf-8">
     <title>Ustvari board</title>
-    <link rel="stylesheet" type="text/css" href = "./css/register_style.css">
+    <link rel="stylesheet" type="text/css" href = "./css/board_create.css">
 </head>
 <body>
     <header>

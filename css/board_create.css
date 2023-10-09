@@ -139,29 +139,29 @@ h1 {
 /* Styles for smaller screens (e.g., mobile devices) */
 @media (max-width: 768px) {
   .reg {
-    max-width: 90%; /* Limit the maximum width for smaller screens */
-    margin: 10px auto; /* Center horizontally */
-    padding: 20px; /* Increase padding for smaller screens */
+      width: 90%; /* Adjust the width for smaller screens */
+      margin: 10px auto; /* Center horizontally */
+      padding: 10px; /* Reduce padding for smaller screens */
   }
 
   /* Adjust other styles as needed for smaller screens */
   input[type="submit"] {
-    font-size: medium;
+      font-size: medium;
   }
 
   .reg a {
-    font-size: medium;
+      font-size: medium;
   }
 
   .meni img {
-    height: 4em;
+      height: 4em;
   }
 
   .inputi_field {
-    font-size: 1rem;
+      font-size: 1rem;
   }
 
   h1 {
-    font-size: 1.5rem;
+      font-size: 1.5rem;
   }
 }

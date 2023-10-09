@@ -12,7 +12,7 @@ $subreddits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8">
     <title>Ustvari post</title>
-    <link rel="stylesheet" type="text/css" href="./css/register_style.css">
+    <link rel="stylesheet" type="text/css" href="./css/postcreate.css">
 </head>
 <body>
 <header>

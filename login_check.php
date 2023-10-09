@@ -8,18 +8,15 @@ if (isset($_POST['email'], $_POST['password'])) {
     $Pass = $_POST['password'];
 
     if (!empty($Email) && !empty($Pass)) {
-        $kp = sha1($Pass);
-
         try {
-            $query = "SELECT * FROM users WHERE email = :email AND password = :password";
+            $query = "SELECT * FROM users WHERE email = :email";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':email', $Email);
-            $stmt->bindParam(':password', $kp);
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($stmt->rowCount() == 1) {
+            if ($stmt->rowCount() == 1 && password_verify($Pass, $row['password'])) {
                 $_SESSION['email'] = $row['email']; // Assuming 'email' is the correct column name
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['ime'] = $row['ime'];

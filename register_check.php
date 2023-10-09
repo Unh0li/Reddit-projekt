@@ -13,7 +13,8 @@ if (isset($_POST['Ime'], $_POST['Email'], $_POST['Password'])) {
         // Preveri, ali geslo izpolnjuje zahteve
         $pattern = '/^(?=.*[A-Z]).+$/';
         if (preg_match($pattern, $Pass)) {
-            $kp = sha1($Pass);
+            // Hash the password using password_hash()
+            $hashedPassword = password_hash($Pass, PASSWORD_DEFAULT);
 
             try {
                 // Check if the email is already registered
@@ -31,7 +32,7 @@ if (isset($_POST['Ime'], $_POST['Email'], $_POST['Password'])) {
                     $insertStmt = $pdo->prepare($insertQuery);
                     $insertStmt->bindParam(':ime', $Ime);
                     $insertStmt->bindParam(':email', $Email);
-                    $insertStmt->bindParam(':password', $kp);
+                    $insertStmt->bindParam(':password', $hashedPassword);
                     $insertStmt->execute();
 
                     header("refresh:0;url=login.php");

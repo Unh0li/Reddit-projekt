@@ -45,7 +45,7 @@ $boardName = $boardStatement->fetchColumn();
         </div>
         
         <div class="profil">
-            <span>Prijavljeni kot: <?php echo $username; ?></span>
+            <span>Prijavljeni ste kot: <?php echo $username; ?></span>
             <!-- "Home" button on the right side next to the logout button -->
             <button onclick="location.href='index.php'">Home</button>
             <?php if ($showLogoutButton) { ?>

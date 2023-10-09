@@ -31,7 +31,6 @@ if (isset($_SESSION['ime'])) {
         <div class="profil">
             <span class="ime">Prijavljeni ste kot: <?php echo $username; ?></span>
             <!-- "Home" button on the right side next to the logout button -->
-            <button onclick="location.href='index.php'">Home</button>
             <?php if ($showLogoutButton) { ?>
                 <button onclick="location.href='logout.php'">Logout</button>
             <?php } ?>

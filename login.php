@@ -11,6 +11,7 @@ require_once "baza.php";
         <title>Prijava</title>
     </head>
     <body>
+
     <header>
     <div class="meni">
         <img src="./slike/ers.png">
@@ -47,6 +48,7 @@ require_once "baza.php";
         <br>
         <br>
         <a  href = "index.php" >Home </a >
+        <p>Lahko se tudi prijaviš z Google računom: <a href = "<?php echo $google_client->createAuthUrl()?>">Registriraj se z Google računom</a>
         </div>
 </body>
 </html>

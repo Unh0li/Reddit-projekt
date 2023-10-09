@@ -58,6 +58,7 @@
         <br>
         <br>
         <a  href = "index.php" >Home </a >
+        <p>Lahko se tudi registriraš z Google računom: <a href = "<?php echo $google_client->createAuthUrl()?>">Registriraj se z Google računom</a>
         </div>
 </body>
 </html>

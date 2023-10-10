@@ -175,5 +175,5 @@ span{
 
 .delete-button,
 .edit-button {
-    margin-left: 10px; /* Add some spacing between the buttons */
+    margin-right: 10px; /* Add some spacing between the buttons */
 }

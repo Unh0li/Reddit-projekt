@@ -25,9 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     createPostButton.onclick = function () {
         location.href = 'create_post.php';
     };
-
-    buttonsDiv.appendChild(logoutButton);
-    buttonsDiv.appendChild(createSubredditButton);
     buttonsDiv.appendChild(createPostButton);
 
     menuDiv.appendChild(buttonsDiv);

@@ -5,10 +5,10 @@ include_once 'baza.php';
 if (isset($_SESSION['ime'])) {
     $username = $_SESSION['ime'];
     $showLogoutButton = true;
-    $showCreateSubredditButton = true; 
+    $showCreateSubredditButton = true;
 } else {
     $username = "Gost";
-    $showLogoutButton = false; 
+    $showLogoutButton = false;
     $showCreateSubredditButton = false;
 }
 ?>
@@ -35,7 +35,9 @@ if (isset($_SESSION['ime'])) {
         </div>
         <div class="profil">
             <span class="ime">Prijavljeni ste kot: <?php echo $username; ?></span>
-            <button id="openMenuButton">Open Menu</button>
+            <?php if ($showLogoutButton) { ?>
+                <button id="openMenuButton">Open Menu</button>
+            <?php } ?>
         </div>
     </div>
 </header>
@@ -43,8 +45,8 @@ if (isset($_SESSION['ime'])) {
     <h1>Welcome to Postme.</h1>
     <p>Totally not a school project website</p>
     <?php
-    if(!isset($_SESSION['email'])){
-        echo"
+    if (!isset($_SESSION['email'])) {
+        echo "
         <a href='register.php'>
         <button>Postani del Postme!</button>
         </a>
@@ -58,19 +60,19 @@ if (isset($_SESSION['ime'])) {
     ";
     }
     ?>
-    </div>
-    <div class="welcome">
+</div>
+<div class="welcome">
     <h1>Boardi : </h1>
     <?php
     $sql = "SELECT * FROM subreddits;";
     $checkStatement = $pdo->prepare($sql);
     $checkStatement->execute();
     while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
-        echo "<br><p><button onclick=\"location.href='subreddit.php?id=".$row['id']."'\"'>
-            ".$row['ime']."</button>
-             - ".$row['opis']."</p> <br>";
+        echo "<br><p><button onclick=\"location.href='subreddit.php?id=" . $row['id'] . "'\"'>
+            " . $row['ime'] . "</button>
+             - " . $row['opis'] . "</p> <br>";
     }
-?>
+    ?>
 </div>
 </body>
 </html>

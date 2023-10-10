@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         location.href = 'logout.php';
     };
 
+    const homeButton = document.createElement("button");
+    homeButton.textContent = "Home";
+    homeButton.onclick = function () {
+        location.href = 'index.php';
+    };
+
     const createSubredditButton = document.createElement("button");
     createSubredditButton.textContent = "Create board";
     createSubredditButton.onclick = function () {
@@ -25,7 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
     createPostButton.onclick = function () {
         location.href = 'create_post.php';
     };
+
+    buttonsDiv.appendChild(logoutButton);
+    buttonsDiv.appendChild(createSubredditButton);
     buttonsDiv.appendChild(createPostButton);
+    buttonsDiv.appendChild(homeButton);
 
     menuDiv.appendChild(buttonsDiv);
 

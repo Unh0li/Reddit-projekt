@@ -118,15 +118,6 @@ header {
   border-image-slice: 1;
 }
 
-.inputi_field:focus .inputi_label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
 .inputi_field:required,
 .inputi_field:invalid {
   box-shadow: none;
@@ -170,4 +161,62 @@ h1 {
   h1 {
     font-size: 1.5rem;
   }
+}
+#subreddit_dropdown {
+  background-color: rgb(53, 51, 51);
+  color: rgb(231, 224, 224);
+  border: 2px solid rgb(90, 158, 203);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.3rem;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+#subreddit_dropdown:hover,
+#subreddit_dropdown:focus {
+  border-color: rgb(51, 111, 152);
+}
+
+/* Style the file input box */
+#slika {
+  background-color: rgb(53, 51, 51);
+  color: rgb(231, 224, 224);
+  border: 2px solid rgb(90, 158, 203);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.3rem;
+  width: 95%;
+  transition: border-color 0.2s;
+}
+
+#slika:hover,
+#slika:focus {
+  border-color: rgb(51, 111, 152);
+}
+
+label[for="slika"], label[for="board"] {
+  font-size: 1.2rem;
+  color: rgb(231, 224, 224);
+  margin-bottom: 5px;
+  display: block;
+}
+
+#naslov_posta,
+#content {
+  background-color: rgb(53, 51, 51);
+  color: rgb(231, 224, 224);
+  border: 2px solid rgb(90, 158, 203);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.3rem;
+  width: 95%;
+  transition: border-color 0.2s;
+}
+
+#naslov_posta:hover,
+#naslov_posta:focus,
+#content:hover,
+#content:focus {
+  border-color: rgb(51, 111, 152);
 }

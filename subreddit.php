@@ -47,7 +47,7 @@ if ($subreddit_id > 0) {
 <body>
 <header>
     <div class="meni">
-    <div class="slika">
+        <div class="slika">
             <div class="img-container">
                 <img src="./slike/ers.png" class="slike" alt="Image">
                 <div class="post">
@@ -55,17 +55,10 @@ if ($subreddit_id > 0) {
                 </div>
             </div>
         </div>
-        
         <div class="profil">
-            <span>Prijavljeni ste kot: <?php echo $username; ?></span>
-            <!-- "Home" button on the right side next to the logout button -->
-            <button onclick="location.href='index.php'">Home</button>
+            <span class="ime">Prijavljeni ste kot: <?php echo $username; ?></span>
             <?php if ($showLogoutButton) { ?>
-                <button onclick="location.href='logout.php'">Logout</button>
-            <?php } ?>
-            <?php if ($showCreateSubredditButton) { ?>
-                <button onclick="location.href='subreddit_create.php'">Create board</button>
-                <button onclick="location.href='create_post.php?id=<?php echo $subreddit_id; ?>'">Create Post</button>
+                <button id="openMenuButton">Open Menu</button>
             <?php } ?>
         </div>
     </div>
@@ -82,8 +75,10 @@ $checkStatement->execute();
 while ($row = $checkStatement->fetch(PDO::FETCH_ASSOC)) {
     echo "<div class='welcome'>";
     if(isset($_SESSION['id']) && $row['user_id'] == $_SESSION['id']){
-        echo "<button style = 'float: right;' onclick=\"location.href='delete_post.php?id=".$row['id']."'\">Delete</button><br><br>";
-        echo "<button style = 'float: right;' onclick=\"location.href='edit.php?id=".$row['id']."'\">Edit</button>";
+        echo "<div class='edit-delete-buttons'>";
+        echo "<button class='delete-button' onclick=\"location.href='delete_post.php?id=" . $row['id'] . "'\">Delete</button>";
+        echo "<button class='edit-button' onclick=\"location.href='edit.php?id=" . $row['id'] . "'\">Edit</button>";
+        echo "</div><br><br>";
     }
     $sql = "SELECT * FROM users WHERE id = :id;";
     $checkStatement2 = $pdo->prepare($sql);

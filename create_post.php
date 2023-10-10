@@ -30,7 +30,9 @@ $subreddits = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <form action="post_check.php" method="post" align="center" enctype="multipart/form-data">
         <table align="center">
             <tr>
-                <td><p> Board:</p>
+                <td>
+                    <label for="board"> Board:</label>
+                    <br>
                     <select name="subreddit_id" id="subreddit_dropdown">
                         <?php
                         foreach ($subreddits as $row) {
@@ -59,7 +61,7 @@ $subreddits = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tr>
                 <td>
                     <div class="inputi">
-                    <label for="slika">slika:</label>
+                    <label for="slika">Slike:</label>
                     <br>
                     <input type="file" id="slika" name="slika[]" required multiple><br><br>
                     </div>
